@@ -1,0 +1,3 @@
+[submodule "third_party/deforum-stable-diffusion"]
+	path = third_party/deforum-stable-diffusion
+	url = https://github.com/deforum-art/deforum-stable-diffusion
