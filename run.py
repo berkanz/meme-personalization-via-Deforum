@@ -18,8 +18,6 @@ from helpers.settings import load_args
 from helpers.render import render_animation, render_input_video, render_image_batch, render_interpolation
 from helpers.model_load import load_model, get_model_output_paths
 
-
-ENABLE_STORY_MODE = True
 DEFAULT_MODEL = "v1-5-pruned-emaonly.ckpt"
 DEFAULT_MODEL_CONFIG = "v1-inference.yaml"
 DEFAULT_SETTINGS = "./examples/runSettings_StillImages.txt"
@@ -44,7 +42,8 @@ def Root():
         return locals()
     
 def DeforumAnimArgs(master_args, root):
-
+    
+    ENABLE_STORY_MODE = master_args["ENABLE_STORY_MODE"] == "True"
     if ENABLE_STORY_MODE == True:
         animation_mode = master_args["animation_mode"] #@param ['None', '2D', '3D', 'Video Input', 'Interpolation'] {type:'string'}
         max_frames = master_args["max_frames"] #@param {type:"number"}
@@ -178,6 +177,7 @@ def DeforumAnimArgs(master_args, root):
     return locals()
 
 def DeforumArgs(master_args, root):
+    ENABLE_STORY_MODE = master_args["ENABLE_STORY_MODE"] == "True"
 
     #@markdown **Image Settings**
     W = master_args["width"] #@param
@@ -426,14 +426,12 @@ def personalize_meme(template, model_path):
         data_url = "data:video/mp4;base64," + b64encode(mp4).decode()
         display.display(display.HTML(f'<video controls loop><source src="{data_url}" type="video/mp4"></video>') )
         
-    
-        
         cleanup_after_render(args.outdir)
-        mp4_paths.append(mp4_path)
-    return mp4_paths, gif_paths
+     
+    return mp4_path
 
 if __name__ == "__main__":
     
     template = "michael_scott"
     model_path = "myself.ckpt"
-    mp4_paths, gif_paths = personalize_meme(template, model_path)
+    meme_path, gif_path = personalize_meme(template, model_path)
