@@ -29,7 +29,7 @@ def load_file_args(path):
 
 def Root():
         models_path = "models" #@param {type:"string"}
-        configs_path = "configs" #@param {type:"string"}
+        configs_path = "third_party/deforum-stable-diffusion/configs/" #@param {type:"string"}
         output_path = "output/" #@param {type:"string"}
         mount_google_drive = False #@param {type:"boolean"}
 
@@ -301,7 +301,7 @@ def personalize_meme(template, model_path):
                                         )
 
     
-    master_args = load_file_args("templates/" + template + "settings.txt")
+    master_args = load_file_args("templates/" + template + "/settings.txt")
     template_label = template.strip(".txt")
     prompts = master_args["prompts"]
 
