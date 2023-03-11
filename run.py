@@ -305,7 +305,7 @@ def personalize_meme(template, model_path):
     template_label = template.strip(".txt")
     prompts = master_args["prompts"]
 
-    if ENABLE_STORY_MODE:
+    if master_args["ENABLE_STORY_MODE"] == "True":
         animation_prompts = master_args["animation_prompts"]
     else:
         animation_prompts = {}
@@ -355,7 +355,7 @@ def personalize_meme(template, model_path):
     render_steps = False  #@param {type: 'boolean'}
     path_name_modifier = "x0_pred" #@param ["x0_pred","x"]
 
-    if skip_video_for_run_all == True or ENABLE_STORY_MODE == False:
+    if skip_video_for_run_all == True or args.ENABLE_STORY_MODE == False:
         print('Skipping video creation')
     else:
         import os
@@ -434,4 +434,4 @@ if __name__ == "__main__":
     
     template = "michael_scott"
     model_path = "myself.ckpt"
-    meme_path, gif_path = personalize_meme(template, model_path)
+    meme_path = personalize_meme(template, model_path)
