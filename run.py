@@ -193,6 +193,13 @@ def DeforumArgs(master_args, root):
     ddim_eta = master_args["ddim_eta"] #@param
     dynamic_threshold = None
     static_threshold = None   
+    
+    #@markdown **CLIP\Aesthetics Conditional Settings**
+    clip_name = master_args["clip_name"] #@param ['ViT-L/14', 'ViT-L/14@336px', 'ViT-B/16', 'ViT-B/32']
+    clip_scale = master_args["clip_scale"] #@param {type:"number"}
+    aesthetics_scale = master_args["aesthetics_scale"] #@param {type:"number"}
+    cutn = master_args["cutn"] #@param {type:"number"}
+    cut_pow = master_args["cut_pow"] #@param {type:"number"}
 
     #@markdown **Save & Display Settings**
     save_samples = True #@param {type:"boolean"}
@@ -349,7 +356,7 @@ def personalize_meme(template, model_path):
 
     skip_video_for_run_all = False #@param {type: 'boolean'}
     fps = master_args["fps"] #@param {type:"number"}
-    reverse_loop = master_args["reverse_loop"]
+    #reverse_loop = master_args["reverse_loop"]
     #@markdown **Manual Settings**
     use_manual_settings = False #@param {type:"boolean"}
     render_steps = False  #@param {type: 'boolean'}
@@ -357,6 +364,7 @@ def personalize_meme(template, model_path):
 
     if skip_video_for_run_all == True or args.ENABLE_STORY_MODE == False:
         print('Skipping video creation')
+        return root.output_path
     else:
         import os
         import subprocess
@@ -379,25 +387,6 @@ def personalize_meme(template, model_path):
                 mp4_path = os.path.join(args.outdir, f"{template_label}.mp4")
                 max_frames = str(anim_args.max_frames)
                 
-                if reverse_loop:
-                    image_full_paths = []
-                    for parent, dirs, files in os.walk(args.outdir):
-                        for file in files:
-                            if file.endswith(".png"):
-                                image_full_paths.append(os.path.join(parent, file))
-                    image_full_paths.sort(key=lambda f: int(re.sub('\D', '', f)))
-                    init_paths = np.copy(image_full_paths)
-                    fns_out = image_full_paths
-                    for i in range(1, len(init_paths)):
-                        fn = str(init_paths[-i])
-                        fn_digit = int(fn[fn.rfind("/")+1:fn.rfind(".")])
-                        new_digit = fn_digit + (2*i-1)
-                        new_fn = os.path.join(args.outdir, f"{format(new_digit, '05d')}.png")
-                        shutil.copyfile(str(init_paths[-i]), new_fn)
-                        fns_out.append(new_fn)
-                    #image_path = fns_out
-                    max_frames = str(2*anim_args.max_frames - 1)   
-
         # make video
         cmd = [
             'ffmpeg',
@@ -435,3 +424,4 @@ if __name__ == "__main__":
     template = "michael_scott"
     model_path = "myself.ckpt"
     meme_path = personalize_meme(template, model_path)
+    print(meme_path)
