@@ -1,6 +1,6 @@
 {
     "ENABLE_STORY_MODE":"False",
-    "batch_name":"TaskName",
+    "batch_name":"michael_scott",
     "n_batch": 1,
     "prompts":[
         "picture of sks person's face, realistic face, ultra detailed face, accent lighting, extremely detailed, ultra detailed, intricate details, high composition"

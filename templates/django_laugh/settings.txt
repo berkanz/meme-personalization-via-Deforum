@@ -1,4 +1,5 @@
 {
+    "ENABLE_STORY_MODE":"False",
     "batch_name":"TaskName",
     "n_batch": 1,
     "prompts":[

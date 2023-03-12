@@ -17,10 +17,22 @@ from helpers.save_images import get_output_folder
 from helpers.settings import load_args
 from helpers.render import render_animation, render_input_video, render_image_batch, render_interpolation
 from helpers.model_load import load_model, get_model_output_paths
+import argparse
 
 DEFAULT_MODEL = "v1-5-pruned-emaonly.ckpt"
 DEFAULT_MODEL_CONFIG = "v1-inference.yaml"
 DEFAULT_SETTINGS = "./examples/runSettings_StillImages.txt"
+
+template = "michael_scott"
+model_path = "myself.ckpt"
+
+def cl_parser():
+    parser = argparse.ArgumentParser(description="Animation properties")
+    parser.add_argument('--meme_template', default="michael_scott", type=str, help='name of the meme template (e.g. michael_scott)')
+    parser.add_argument('--fine_tuned_model_path', default="myself.ckpt", type=str, help='path to the fine-tuned model')
+    arguments = parser.parse_args()
+    return arguments
+
 
 def load_file_args(path):
     with open(path, "r") as f:
@@ -421,7 +433,5 @@ def personalize_meme(template, model_path):
 
 if __name__ == "__main__":
     
-    template = "michael_scott"
-    model_path = "myself.ckpt"
-    meme_path = personalize_meme(template, model_path)
-    print(meme_path)
+    cl_args = cl_parser()
+    meme_path = personalize_meme(cl_args.meme_template, cl_args.fine_tuned_model_path)

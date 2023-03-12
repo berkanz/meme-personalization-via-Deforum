@@ -1,8 +1,9 @@
 {
+    "ENABLE_STORY_MODE":"False",
     "batch_name":"TaskName",
     "n_batch": 1,
     "prompts":[
-        "picture of sks man's face with short hair, realistic face, ultra detailed face, accent lighting, extremely detailed, ultra detailed, intricate details, high composition"
+        "picture of sks man's face, realistic face, ultra detailed face, accent lighting, extremely detailed, ultra detailed, intricate details, high composition"
     ],
     "width":800,
     "height":800,
