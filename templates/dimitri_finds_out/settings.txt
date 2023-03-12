@@ -1,5 +1,5 @@
 {
-    "ENABLE_STORY_MODE":"False",
+    "ENABLE_STORY_MODE":"True",
     "batch_name":"dimitri_finds_out",
     "n_batch": 1,
     "prompts":[
@@ -54,7 +54,7 @@
 	"0": "picture of laughing sks in a dance club, realistic face, ultra detailed face, accent lighting, extremely detailed, ultra detailed, intricate details, high composition, 8k, cinematic lighting, blurry:-1, disfigured:-1, ugly:-1, deformed:-1, bad anatomy:-1, poorly drawn face:-1, poorly drawn hands:-1, malformed hands:-1, disgusting:-1, poorly drawn:-1, poorly drawn face:-1"
     },
     "animation_mode":"Video Input",
-    "max_frames":540,
+    "max_frames":10,
     "diffusion_cadence":"6",
     "border":"warp",
     "angle":"0:(0)",

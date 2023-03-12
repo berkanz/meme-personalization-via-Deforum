@@ -395,7 +395,7 @@ def personalize_meme(template, model_path):
                 max_frames = str(args.steps)
             else: # render images for a video
                 
-                image_path = os.path.join(args.outdir, f"%05d.png")    
+                image_path = os.path.join(args.outdir, f"{args.timestring}_%05d.png")    
                 mp4_path = os.path.join(args.outdir, f"{template_label}.mp4")
                 max_frames = str(anim_args.max_frames)
                 
