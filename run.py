@@ -310,8 +310,8 @@ def personalize_meme(template, model_path):
     else:
         animation_prompts = {}
 
-    args_dict = DeforumArgs(master_args)
-    anim_args_dict = DeforumAnimArgs(master_args)
+    args_dict = DeforumArgs(master_args, root)
+    anim_args_dict = DeforumAnimArgs(master_args,root)
     args = SimpleNamespace(**args_dict)
     anim_args = SimpleNamespace(**anim_args_dict)
     args.timestring = time.strftime('%Y%m%d%H%M%S')
