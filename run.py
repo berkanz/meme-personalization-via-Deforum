@@ -434,5 +434,4 @@ def personalize_meme(template, model_path):
 if __name__ == "__main__":
     
     cl_args = cl_parser()
-    template = "dimitri_finds_out"
     meme_path = personalize_meme(template, cl_args.fine_tuned_model_path)
