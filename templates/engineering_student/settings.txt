@@ -3,8 +3,8 @@
     "batch_name":"engineering_student",
     "n_batch": 1,
     "prompts":[
-        "cool picture of sks person hanging out with woman friends, cool outfit, handsome, eye glasses, far picture, whole body picture, realistic face, realistic body, ultra detailed face, realistic legs, accent lighting, extremely detailed, ultra detailed, intricate details, high composition",
-        "fat sks person with long beard studying on desk, looking terrible, very long beard, dirty outfit, far picture, whole body picture, realistic face, realistic body, ultra detailed face, realistic legs, accent lighting, extremely detailed, ultra detailed, intricate details, high composition"
+        "cool picture of sks person hanging out with female friends, cool outfit, handsome, eye glasses, far picture, whole body picture, realistic face, realistic body, ultra detailed face, realistic legs, accent lighting, extremely detailed, ultra detailed, intricate details, high composition",
+        "overweight sks person with long beard studying on desk, looking worried, far picture, whole body picture, realistic face, realistic body, ultra detailed face, realistic legs, accent lighting, extremely detailed, ultra detailed, intricate details, high composition"
     ],
     "width":850,
     "height":850,

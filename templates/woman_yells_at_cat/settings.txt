@@ -50,9 +50,7 @@
     "clamp_start":0.2,
     "clamp_stop":0.01,
     "cond_uncond_sync":true,
-    "animation_prompts":{
-	"0": "picture of sks man with white shirt, realistic face, ultra detailed face, accent lighting, extremely detailed, ultra detailed, intricate details, high composition"
-    },
+    "animation_prompts":{},
     "animation_mode":"None",
     "max_frames":20,
     "diffusion_cadence":"1",
@@ -82,7 +80,7 @@
     "padding_mode":"border",
     "sampling_mode":"bicubic",
     "save_depth_maps":false,
-    "video_init_path":"./input/dance_test_Trim.mp4",
+    "video_init_path":"",
     "extract_nth_frame":1,
     "overwrite_extracted_frames":true,
     "use_mask_video":false,
