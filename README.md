@@ -14,7 +14,7 @@ git clone --recursive https://https://github.com/berkanz/meme-personalization-vi
 ```
 
 ## Usage
-First of all, you need a finetuned SD model of yourself and move it into <models/>. Secondly, you need to pick a template or create a new one. Then, simply run run.py scripts with two arguments as shown below: 
+First of all, you need a finetuned SD model of yourself and move it into <mark>models</mark>. Secondly, you need to pick a template or create a new one. Then, simply run run.py scripts with two arguments as shown below: 
 
 <ins>Script options:</ins>
 ```
@@ -26,6 +26,6 @@ python run.py --help
   --fine_tuned_model_path    path to the fine-tuned model                        [str]     
 ```
 
-Generated meme will be saved at <output/> subfolder.
+Generated meme will be saved at <mark>output</mark> subfolder.
 
 Detailed description and instructions are given in the Medium blog: 
