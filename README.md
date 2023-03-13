@@ -26,6 +26,6 @@ python run.py --help
   --fine_tuned_model_path    path to the fine-tuned model                        [str]     
 ```
 
-Generated meme will be saved at <mark>output</mark> subfolder.
+Generated meme will be saved at ```output/``` subfolder.
 
 Detailed description and instructions are given in the Medium blog: 
