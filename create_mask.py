@@ -10,12 +10,12 @@ import argparse
 import pixellib
 from pixellib.torchbackend.instance import instanceSegmentation
 ins = instanceSegmentation()
-ins.load_model("pointrend_resnet50.pkl")
+ins.load_model("models/pointrend_resnet50.pkl")
 target_classes = ins.select_target_classes(person=True)
 
 def cl_parser():
     parser = argparse.ArgumentParser(description="Animation properties")
-    parser.add_argument('--video_path', default="dance_test.mp4", type=str, help='name of the meme template (e.g. michael_scott)')
+    parser.add_argument('--video_path', default="source.mp4", type=str, help='name of the meme template (e.g. michael_scott)')
     parser.add_argument('--save_path', default="mask.mp4", type=str, help='path to the fine-tuned model')
     arguments = parser.parse_args()
     return arguments
