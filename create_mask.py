@@ -15,8 +15,8 @@ target_classes = ins.select_target_classes(person=True)
 
 def cl_parser():
     parser = argparse.ArgumentParser(description="Animation properties")
-    parser.add_argument('--video_path', default="source.mp4", type=str, help='name of the meme template (e.g. michael_scott)')
-    parser.add_argument('--save_path', default="mask.mp4", type=str, help='path to the fine-tuned model')
+    parser.add_argument('--video_path', default="templates/dimitri_finds_out/source.mp4", type=str, help='name of the meme template (e.g. michael_scott)')
+    parser.add_argument('--save_path', default="templates/dimitri_finds_out/mask.mp4", type=str, help='path to the fine-tuned model')
     arguments = parser.parse_args()
     return arguments
     
@@ -42,12 +42,24 @@ def extract_frames(video_path, save_path):
         frame_count += 1
     return frame_count
 
-def frame_segmentation(path_to_extracted_frames, frame_count, save_path):
-    create_folder(save_path)
+def max_nonzero_channel(arr):
+    # Sum across all dimensions except for the channel dimension
+    channel_sums = np.sum(arr != 0, axis=tuple(range(arr.ndim-1)))
+    # Find the index of the channel with the highest sum
+    max_channel_index = np.argmax(channel_sums)
+    return max_channel_index
+
+def frame_segmentation(path_to_extracted_frames, frame_count, save_path_for_mask_frames):
+    create_folder(save_path_for_mask_frames) # create the folder if not already exists
     for index in tqdm(range(frame_count)):
-        r, output = ins.segmentImage(f"{path_to_extracted_frames}frame{index}.jpg", show_bboxes=True,segment_target_classes = target_classes, save_extracted_objects = False, mask_points_values = False, extract_segmented_objects = True, output_image_name=None)
-        cv2.imwrite(f"{save_path}mask{index:05}.png",(1-r["masks"][:,:,0]).astype(int)*255)
-    
+        # run PointRend for each frame of the video
+        r, output = ins.segmentImage(f"{path_to_extracted_frames}frame{index}.jpg", 
+                                     show_bboxes=True,segment_target_classes = target_classes, 
+                                     save_extracted_objects = False, mask_points_values = False, 
+                                     extract_segmented_objects = True, output_image_name=None)
+        # pick the channel with highes nonzero pixel count
+        picked_object = int(max_nonzero_channel(r["masks"][:,:,:]))
+        cv2.imwrite(f"{save_path_for_mask_frames}mask{index:05}.png",(1-r["masks"][:,:,picked_object]).astype(int)*255)
 
 def save_mask_video(count, path_to_frames="extracted_masks/", mp4_path="mask.mp4"):
     image_path = os.path.join(path_to_frames, f"mask%05d.png")  
