@@ -28,4 +28,4 @@ python run.py --help
 
 Generated meme will be saved at ```output/``` subfolder.
 
-Detailed description and instructions are given in the Medium blog: 
+Detailed description and instructions are given in the Medium blog: https://medium.com/p/66acfb3a2950
