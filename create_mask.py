@@ -15,8 +15,8 @@ target_classes = ins.select_target_classes(person=True)
 
 def cl_parser():
     parser = argparse.ArgumentParser(description="Animation properties")
-    parser.add_argument('--video_path', default="templates/dimitri_finds_out/source.mp4", type=str, help='name of the meme template (e.g. michael_scott)')
-    parser.add_argument('--save_path', default="templates/dimitri_finds_out/mask.mp4", type=str, help='path to the fine-tuned model')
+    parser.add_argument('--video_path', default="source.mp4", type=str, help='name of the meme template (e.g. michael_scott)')
+    parser.add_argument('--save_path', default="mask.mp4", type=str, help='path to the fine-tuned model')
     arguments = parser.parse_args()
     return arguments
     
@@ -58,12 +58,15 @@ def frame_segmentation(path_to_extracted_frames, frame_count, save_path_for_mask
                                      save_extracted_objects = False, mask_points_values = False, 
                                      extract_segmented_objects = True, output_image_name=None)
         # pick the channel with highes nonzero pixel count
-        picked_object = int(max_nonzero_channel(r["masks"][:,:,:]))
-        cv2.imwrite(f"{save_path_for_mask_frames}mask{index:05}.png",(1-r["masks"][:,:,picked_object]).astype(int)*255)
+        if r["masks"].ndim==3:
+            picked_object = int(max_nonzero_channel(r["masks"][:,:,:]))
+            cv2.imwrite(f"{save_path_for_mask_frames}mask{index:05}.png",(1-r["masks"][:,:,picked_object]).astype(int)*255)
+        else:
+            cv2.imwrite(f"{save_path_for_mask_frames}mask{index:05}.png",np.ones((output.shape)).astype(int)*255)
 
 def save_mask_video(count, path_to_frames="extracted_masks/", mp4_path="mask.mp4"):
     image_path = os.path.join(path_to_frames, f"mask%05d.png")  
-    fps = 24  
+    fps = 30
     # make video
     cmd = [
             'ffmpeg',
